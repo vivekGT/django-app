@@ -16,7 +16,7 @@ itsdangerous
 Jinja2             
 MarkupSafe            
 mysqlclient           
-numpy             
+numpy            
 packaging            
 pandas             
 plotly             

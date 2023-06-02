@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-=opeu0kben*^!f3l5n)6*qvz8zy!p8!%8=+d^##x+65a81l$la
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app']
+
 
 
 # Application definition
@@ -94,7 +95,7 @@ DATABASES = {
         'USER': os.getenv('PGUSER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
         'HOST': os.getenv('PGHOST'),
-        'PORT': os.getenv('PGPORT),
+        'PORT': os.getenv('PGPORT')
     }
 }
 

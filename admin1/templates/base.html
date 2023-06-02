@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Django Project{% endblock %}</title>
+    <!-- Include your CSS and JavaScript files here -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </nav>
+
+    <!-- Content Block -->
+    <div class="content">
+        {% block content %}
+        <!-- Content of the child templates will be inserted here -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 My Django Project. All rights reserved.</p>
+    </footer>
+</body>
+</html>

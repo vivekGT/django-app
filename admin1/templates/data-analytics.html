@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Analytics Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/Chart.js"></script>
+</head>
+<body>
+  <canvas id="data-chart"></canvas>
+  <script>
+    // Retrieve data from the API endpoint
+    fetch('/api/data/')
+      .then(response => response.json())
+      .then(data => {
+        // Extract required data
+        const models = data.map(entry => entry.Model);
+        const wsTgt = data.map(entry => entry.WS_TGT);
+        const dmsStock = data.map(entry => entry.DMS_Stock);
+        const totalProbableStock = data.map(entry => entry.Total_probable_Stock);
+        const wsach = data.map(entry=>entry.WS_ACH);
+        const balws= data.map(entry=>entry.BAL_WS);
+
+        // Prepare chart data
+        const chartData = {
+          labels: models,
+          datasets: [
+            {
+              label: 'WS_TGT',
+              data: wsTgt,
+              backgroundColor: 'rgba(198, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'DMS_Stock',
+              data: dmsStock,
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'Total_probable_Stock',
+              data: totalProbableStock,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'WS_ACH',
+              data: wsach,
+              backgroundColor: 'rgba(98, 102, 156, 0.2)',
+              borderColor: 'rgba(98, 102, 152, 1)',
+              borderWidth: 1,
+            },
+            {
+              label: 'BAL_WS',
+              data: balws,
+              backgroundColor: 'rgba(143, 92, 92, 0.2)',
+              borderColor: 'rgba(143, 92, 92, 1)',
+              borderWidth: 1,
+            },
+          ],
+          options: {
+          backgroundColor:"rgba(143, 92, 92, 0.2)"
+  },
+        };
+
+        // Create a bar chart
+        const ctx = document.getElementById('data-chart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: 'Models',
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'DMS_Stock',
+                },
+              },
+            },
+          },
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html>

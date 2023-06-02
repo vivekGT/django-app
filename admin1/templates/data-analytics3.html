@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Analytics Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/Chart.js"></script>
+</head>
+<body>
+  <canvas id="data-chart"></canvas>
+  <script>
+    // Retrieve data from the API endpoint
+    fetch('/api/data2/')
+      .then(response => response.json())
+      .then(data => {
+        // Extract required data
+        const team_leader = data.map(entry => entry.team_leader_name);
+        // const wsTgt = data.map(entry => entry.WS_TGT);
+        // const dmsStock = data.map(entry => entry.DMS_Stock);
+        const enquiry = data.map(entry => entry.enquiry_total);
+        // const wsach = data.map(entry=>entry.WS_ACH);
+        // const balws= data.map(entry=>entry.BAL_WS);
+         let enquiryData = enquiry.push(0);
+        // Prepare chart data
+        const chartData = {
+          labels: team_leader,
+          datasets: [
+            {
+              label: 'enquiry_total',
+              data: enquiry,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1,
+            },
+          ],
+          options: {
+          backgroundColor:"rgba(143, 92, 92, 0.2)"
+  },
+        };
+
+        // Create a bar chart
+        const ctx = document.getElementById('data-chart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: 'Team_leader_name',
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'enquiry_total',
+                },
+              },
+            },
+          },
+        });
+      })
+      .catch(error => console.error(error));
+  </script>
+</body>
+</html

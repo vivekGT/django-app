@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to the Dashboard</h1>
+    
+    {% if user.userprofile.role.name == 'TL' %}
+        <!-- TL-specific content -->
+        <h2>TL Reports</h2>
+        <p>View TL reports here.</p>
+    {% elif user.userprofile.role.name == 'User' %}
+        <!-- User-specific content -->
+        <h2>User Reports</h2>
+        <p>View user reports here.</p>
+    {% else %}
+        <!-- Fallback content -->
+        <p>Access to this dashboard is not allowed for your role.</p>
+    {% endif %}
+{% endblock %}

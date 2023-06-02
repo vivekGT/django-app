@@ -1,0 +1,191 @@
+{% include "header.html" %}
+{% load static %}
+
+
+
+
+        <br />
+        <br />
+        <br />
+        <br /><br />
+        <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
+
+            <!--begin::Followers-->
+            <!--begin::Col-->
+            {% for event in all_data %}
+            <div class="col-md-6 col-xxl-2">
+
+                <!--begin::Card-->
+                <div class="card hover-elevate-up">
+                    <!--begin::Card body-->
+                    <div class="card-body d-flex flex-center flex-column py-9 px-5 ">
+                        <!--begin::Avatar-->
+                        <div class="symbol symbol-65px symbol-circle mb-5">
+                            
+                            <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">{{ event.team_leader_name|make_list|first }}</span>
+                            <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div>
+                        </div>
+                        <!--end::Avatar-->
+                        <!--begin::Name-->
+                        <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{ event }}</a>
+                        <!--end::Name-->
+                        <!--begin::Position-->
+                        <div class="fw-semibold text-gray-400 mb-6">Art Director at Novica Co.</div>
+                        <!--end::Position-->
+                        <!--begin::Info-->
+                        <div class="d-flex flex-center flex-wrap mb-5">
+                            <!--begin::Stats-->
+                            <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                                <div class="fs-6 fw-bold text-gray-700">$14,560</div>
+                                <div class="fw-semibold text-gray-400">Earnings</div>
+                            </div>
+                            <!--end::Stats-->
+                            <!--begin::Stats-->
+                            <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                                <div class="fs-6 fw-bold text-gray-700">$236,400</div>
+                                <div class="fw-semibold text-gray-400">Sales</div>
+                            </div>
+                            <!--end::Stats-->
+                        </div>
+                        <!--end::Info-->
+                        <!--begin::Follow-->
+                        <button class="btn btn-sm btn-light-primary btn-flex btn-center" data-kt-follow-btn="true">
+                            <i class="ki-duotone ki-check following fs-3"></i>
+                            <i class="ki-duotone ki-plus follow fs-3 d-none"></i>
+                            <!--begin::Indicator label-->
+                            <span class="indicator-label">Following</span>
+                            <!--end::Indicator label-->
+                            <!--begin::Indicator progress-->
+                            <span class="indicator-progress">Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            <!--end::Indicator progress-->
+                        </button>
+                        <!--end::Follow-->
+                    </div>
+                    <!--begin::Card body-->
+                </div>
+                <!--begin::Card-->
+            </div>
+           
+                    </div>
+                    <!--begin::Card body-->
+                </div>
+                <!--begin::Card-->
+            </div>
+            <!--end::Col-->
+            {% endfor %}
+
+
+        </div>
+
+        <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
+          <div class="col-md-6 col-xxl-6">
+            <div class="card card">
+
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+          <div class="col-md-6 col-xxl-6">
+            <div class="card card">
+              <canvas id="myChart2"></canvas>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--end::Page-->
+    </div>
+
+    <!--end::App-->
+    <script>
+      // Select the canvas element
+      fetch('/api/data2/')
+      .then(response => response.json())
+      .then(data => {
+
+        const team_leader = data.map(entry => entry.team_leader_name);
+        // const wsTgt = data.map(entry => entry.WS_TGT);
+        // const dmsStock = data.map(entry => entry.DMS_Stock);
+        const enquiry = data.map(entry => entry.enquiry_total);
+        // const wsach = data.map(entry=>entry.WS_ACH);
+        // const balws= data.map(entry=>entry.BAL_WS);
+         let enquiryData = enquiry.push(0);
+     
+      var ctx = document.getElementById('myChart').getContext('2d');
+      // Create the line chart
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: team_leader,
+              datasets: [{
+                  label: 'Sales',
+                  data: enquiry,
+                  fill: false,
+                  borderColor: 'rgb(75, 192, 192)',
+                  tension: 0.1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+
+
+    })
+    fetch('/api/data/')
+      .then(response => response.json())
+      .then(data => {
+        // Extract required data
+        const models = data.map(entry => entry.Model);
+        // const wsTgt = data.map(entry => entry.WS_TGT);
+        // const dmsStock = data.map(entry => entry.DMS_Stock);
+        const totalProbableStock = data.map(entry => entry.Total_Probable_Stock);
+        // const wsach = data.map(entry=>entry.WS_ACH);
+        // const balws= data.map(entry=>entry.BAL_WS);
+       // Select the canvas element
+    var ctx2 = document.getElementById('myChart2').getContext('2d');
+
+// Create the bar chart
+var myChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: models,
+        datasets: [{
+            label: 'Sales',
+            data: totalProbableStock,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+            title: {
+                display: true,
+                text: 'Bar Chart'
+            }
+        }
+    }
+});
+      })
+
+  </script>
+
+    <script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
+    <script src="{%static 'js/scripts.bundle.js'%}"></script>
+ 
+
+  </body>
+  <!--end::Body-->
+</html>
+

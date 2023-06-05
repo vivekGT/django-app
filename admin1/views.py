@@ -8,6 +8,11 @@ from .forms import LoginForm
 from django.contrib.auth import get_user_model
 from .models import User, TeamLeaderData
 import pandas as pd
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at HOME.")
 
 
 def upload_csv(request):

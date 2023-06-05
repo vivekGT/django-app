@@ -35,6 +35,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("", views.index,name='index'),
     path("logout/   ", RedirectView.as_view(url='/admin/logout/')),
     path('register/', register, name='register'),
     path('success/', success, name='success'),

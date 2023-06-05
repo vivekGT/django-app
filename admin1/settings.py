@@ -102,7 +102,7 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'URL': 'postgresql://postgres:h6NEoHXhJea9YyHVw0LV@containers-us-west-201.railway.app:5853/railway',
         'NAME': 'railway',
         'USER': 'postgres',

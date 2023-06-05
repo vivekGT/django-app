@@ -7,7 +7,6 @@ from .forms import RegistrationForm
 from .forms import LoginForm
 from django.contrib.auth import get_user_model
 from .models import User, TeamLeaderData
-import pandas as pd
 from django.http import HttpResponse
 
 

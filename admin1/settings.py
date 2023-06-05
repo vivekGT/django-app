@@ -86,15 +86,26 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'URL': os.getenv('POSTGRES_URL'),
+#         'NAME': os.getenv('PGNAME'),
+#         'USER': os.getenv('PGUSER'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+#         'HOST': os.getenv('PGHOST'),
+#         'PORT': os.getenv('PGPORT')
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': os.getenv('POSTGRES_URL'),
-        'NAME': os.getenv('PGNAME'),
-        'USER': os.getenv('PGUSER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('PGHOST'),
-        'PORT': os.getenv('PGPORT')
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'URL': 'postgresql://postgres:h6NEoHXhJea9YyHVw0LV@containers-us-west-201.railway.app:5853/railway',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD':'h6NEoHXhJea9YyHVw0LV',
+        'HOST': 'containers-us-west-201.railway.app',
+        'PORT': '5853'
     }
 }
 

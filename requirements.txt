@@ -14,8 +14,7 @@ dpd-components
 Flask             
 itsdangerous             
 Jinja2             
-MarkupSafe            
-mysqlclient           
+MarkupSafe                      
 numpy            
 packaging            
 pandas             
@@ -23,7 +22,6 @@ plotly
 python-dateutil    
 pytz             
 six             
-sqlparse           
 tenacity            
 typing_extensions   
 tzdata            

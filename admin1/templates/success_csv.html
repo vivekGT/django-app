@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px; 
+        }
+
+        h1{
+            text-align: center;
+            color: #333;
+        }
+        
+        a {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>CSV Uploaded successfully!</h2>
+        <p>Your CSV File has been uploaded successfully.</p>
+        <br/>
+            <a href="{% url 'Analytics' %}" class="btn btn-primary">Analytics</a>
+
+    </div>
+</body>
+
+</html>

@@ -1,10 +1,25 @@
+<!-- home.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.bundle.css' %}">
 </head>
 <body>
-    <h1>Welcome to the Dashboard</h1>
-    <!-- Add your dashboard content here -->
+    <header>
+        <h1>Company Name</h1>
+        <nav>
+            <ul>
+                <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+                <li><a href="{% url 'login' %}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome to Our Website</h2>
+        <p></p>
+    </main>
 </body>
 </html>

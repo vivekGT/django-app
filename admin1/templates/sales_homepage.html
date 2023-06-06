@@ -1,0 +1,60 @@
+<h1>Welcome, Sales Executive!  </h1>
+{% load static %}
+
+<head>
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <style>
+            .logout-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: #111b73;
+                color: #fff;
+                padding: 10px 20px;
+                font-size: 16px;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+
+            .logout-btn2 {
+                position: relative;
+                top: 10px;
+                right: 10px;
+                background-color: #008080;
+                color: #fff;
+                padding: 10px 20px;
+                font-size: 16px;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+
+            .center-box {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: lightgray;
+                padding: 200px;
+            }
+        </style>
+    </head>
+
+<body>
+    <div class="">
+
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+
+        <!-- <a role="button" class="logout-btn2" href="/uniquesales_ex/">DSE's Performance</a> -->
+    </div>
+    <div class="center-box m-10 p-10">
+        <h1>You can see your Performance here.</h1>
+        <p></p>
+        <a role="button" class="logout-btn2" href="/uniquesales_ex/">DSE's Performance</a>
+    </div>
+    <!-- Your page content goes here -->
+</body>
+
+</html>

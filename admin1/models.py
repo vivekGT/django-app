@@ -10,7 +10,7 @@ class User(AbstractUser):
     )
 
     role = models.CharField(max_length=20, choices=USER_ROLES)
-
+  
 
 
 class Person(models.Model):
@@ -39,15 +39,28 @@ class TeamLeaderData(models.Model):
     team_leader_territory = models.CharField(max_length=100)
     per_day_asking = models.FloatField()
     enquiry_total = models.IntegerField(null=True)
-    test_drive_percentage = models.CharField(max_length=10)
-    home_visit_percentage = models.CharField(max_length=10)
+    test_drive_percentage = models.IntegerField()
+    home_visit_percentage = models.IntegerField()
 
     def __str__(self):
         return self.team_leader_name
 
 
 
+from django.db import models
 
+class salesEx(models.Model):
+    mspin = models.IntegerField()
+    dse_name = models.CharField(max_length=100)
+    ageing = models.CharField(max_length=100)
+    team_leader_name = models.CharField(max_length=100)
+    unit_name = models.CharField(max_length=100)
+    enquiry_total = models.IntegerField(null=True)
+    test_drive = models.IntegerField()
+    home_visit = models.IntegerField()
+
+    def __str__(self):
+        return self.dse_name 
 
         
     

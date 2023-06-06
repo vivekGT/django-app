@@ -6,15 +6,41 @@ from django.contrib.auth import authenticate, login,logout
 from .forms import RegistrationForm
 from .forms import LoginForm
 from django.contrib.auth import get_user_model
-from .models import User, TeamLeaderData
-from django.http import HttpResponse
+from .models import User,salesEx
+# def upload_csv(request):
+#     if request.method == 'POST' and request.FILES.get('csv_file'):
+#         csv_file = request.FILES['csv_file']
+
+#         # Read the file in binary mode
+#         raw_data = csv_file.read()
+
+#         # Decode the file, ignoring any errors or null bytes
+#         decoded_file = raw_data.decode('utf-8', errors='ignore').replace('\x00', '')
+
+#         csv_data = csv.reader(decoded_file.splitlines(), delimiter=',')
+#         print(csv_data)
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at HOME.")
+#         for row in csv_data:
+#             print(row)
+#             # Assuming the CSV file has columns: name, email, age
+            
+#             name = row[0]
+#             email = row[1]
+#             age = row[2]
+#             print(name)
+#             print(email)
+#             print(age)
+#             # Save the data in the database (adjust this part according to your model and database setup)
+#             # Example using a model called Person:
+#             person = Person(name=name, email=email, age=age)
+#             person.save()
+        
+#         return render(request, 'success.html')
+    
+#     return render(request, 'upload.html')
 
-
-def upload_csv(request):
+def sales_ex(request):
     if request.method == 'POST' and request.FILES.get('csv_file'):
         csv_file = request.FILES['csv_file']
 
@@ -26,26 +52,31 @@ def upload_csv(request):
 
         csv_data = csv.reader(decoded_file.splitlines(), delimiter=',')
         print(csv_data)
+        next (csv_data)
 
 
         for row in csv_data:
             print(row)
             # Assuming the CSV file has columns: name, email, age
             
-            name = row[0]
-            email = row[1]
-            age = row[2]
-            print(name)
-            print(email)
-            print(age)
+            mspin = int(row[0])
+            dse_name = row[1]
+            team_leader_name= row[3]
+            ageing = row[2]
+            enquiry_total =int (row[5])
+            test_drive =int(row[6])
+            home_visit= int(row[7])
+            unit_name = row[4]
+            print(mspin)
+            print(ageing)
             # Save the data in the database (adjust this part according to your model and database setup)
             # Example using a model called Person:
-            person = Person(name=name, email=email, age=age)
-            person.save()
+            sales = salesEx(mspin=mspin, dse_name=dse_name,team_leader_name=team_leader_name,ageing=ageing, enquiry_total=enquiry_total,test_drive=test_drive,home_visit=home_visit,unit_name=unit_name)
+            sales.save()
         
         return render(request, 'success.html')
     
-    return render(request, 'upload.html')
+    return render(request, 'upload1.html')
 
 
 
@@ -83,10 +114,8 @@ def user_login(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            check_user = authenticate(request, username=username, password=password)
-            
 
-            
+            check_user = authenticate(request, username=username, password=password)
             if check_user is not None:
                login(request, check_user)
             #    return redirect('admin')
@@ -94,11 +123,11 @@ def user_login(request):
                if usr_role == 'client_admin':
                    return redirect ('client_admin_dashboard')
                elif usr_role == 'tl':
-                   return redirect ('tl_dashboard')
+                   return redirect ('sales_dashboard')
                elif usr_role == 'admin':
                    return redirect("Analytics")
                elif usr_role == 'user':
-                   return redirect('user_dashboard')
+                   return redirect('sales_homepage')
             
             
            
@@ -117,20 +146,17 @@ def client_admin_dashboard(request):
     # Logic for the admin dashboard
     return render(request, 'client_admin_dashboard.html')
 
-def tl_dashboard(request):
+def sales_dashboard(request):
     # Logic for the admin dashboard
-    return render(request, 'tl_dashboard.html')
+    return render(request, 'sales_homepage.html')
 
 def user_dashboard(request):
-    # Logic for the admin dashboard
-    return render(request, 'user_dashboard.html')
-
+    team_all=TeamLeaderData.objects.all()
+    return render (request,"user_dashboard.html",{"team_all":team_all})
 import csv
 from django.shortcuts import render
 from .models import TeamLeaderData
 from datetime import datetime
-
-
 def team(request):
     if request.method == 'POST' and request.FILES.get('csv_file'):
         csv_file = request.FILES['csv_file']
@@ -164,7 +190,7 @@ def team(request):
         
         return render(request, 'success.html')
     
-    return render(request, 'upload.html')
+    return render(request, 'upload1.html')
 def Please_upload_csv(request):
     if request.method == 'POST' and request.FILES.get('csv_file'):
         csv_file = request.FILES['csv_file']
@@ -201,7 +227,7 @@ def Please_upload_csv(request):
             sample = Sample(Model=Model, DMS_Stock=DMS_Stock, WS_TGT= WS_TGT, WS_ACH= WS_ACH,BAL_WS= BAL_WS,Total_Probable_Stock= Total_Probable_Stock)
             sample.save()
         
-        return render(request, 'success.html')
+        return render(request, 'success_csv.html')
     
     return render(request, 'upload1.html')
 
@@ -209,21 +235,33 @@ def Please_upload_csv(request):
 from django.shortcuts import render
 from django.db.models import Sum
 from .models import Sample
-def analytics_dashboard(request):
-    name_letter = {}
-    all_data = TeamLeaderData.objects.all()
-   
-       
+def analytics_dash(request):
+    analytics_sample=Sample.objects.all()
+    team_data=TeamLeaderData.objects.all()
+    sales_all=salesEx.objects.all()
 
-
-    return render(request, 'Analytics.html',{"all_data": all_data})
+    
+    return render(request, 'Analytics.html',{'analytics_sample':analytics_sample, 'team_data':team_data,'sales_data':sales_all})
 
 from django.shortcuts import render
 
 def data_analytics_view(request):
-    return render(request, 'data-analytics3.html')
+    return render(request, 'data-analytics2.html')
 
-@login_required
+def sales_table(request):
+    sales_data1={}
+    sales_data=salesEx.objects.all()
+    if request.method=="GET":
+            user_n = request.GET.get('event')
+            print(user_n)
+            for event in sales_data:
+                if event.dse_name == user_n:
+                    sales_data1.update({"id":event.id,"team_leader_name":event.team_leader_name,'dse_name':event.dse_name,"home_visit":event.home_visit,"test_drive":event.test_drive,
+                                "ageing":event.ageing,"enquiry_total":event.enquiry_total,'mspin':event.mspin,'unit_name':event.unit_name}) 
+            
+    return render (request,"sales_table.html",sales_data1)
+
+
 def restricted_view(request):
     # Logic for the restricted view
     return render(request, 'restricted.html')
@@ -234,8 +272,7 @@ def logout_view(request):
     return redirect("login")
 
 def usermanagement (request):
-    all_details = User.objects.all()
-    
+    all_details=User.objects.all()
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -244,27 +281,15 @@ def usermanagement (request):
             user.save()
             login(request, user)
             return redirect('um')
-    else:
+    else: 
         form = RegistrationForm()
-    
-    return render(request, 'um.html',  {"all_details":all_details, 'form': form})
-
-
+   
+    return render(request, 'um.html', {'all_details': all_details,'form': form})
 def billing_summary(request):
-    return render(request,"Billing.html")
-
-
+    return render(request,"billing.html")
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
-# @login_required
-# def header(request):
-#     username = request.user.username
-#     return render (request,'header.html',{username:username})
-
-
-
 def header(request):
     try:
         if request.method=="POST":
@@ -272,12 +297,90 @@ def header(request):
             data = {
                 "username": user_n
             }
+           
+
             return render(request, 'header.html', data)
     except:
         data = {
                 "username": "User"
             }
         return render(request, 'header.html', data)
+def team_scorecard(request):
+    team_all=TeamLeaderData.objects.all()
+    return render (request,"user_dashboard.html",{"team_all":team_all})
+
+def teamleaderdetails(request):
+     team_data1 = {}
+     team_data=TeamLeaderData.objects.all()
+
+     if request.method=="GET":
+            user_n = request.GET.get('event')
+            print(user_n)
+            for event in team_data:
+                if event.team_leader_name == user_n:
+                    team_data1.update({"id":event.id,"team_leader_name":event.team_leader_name,'team_leader_territory':event.team_leader_territory,"home_visit_percentage":event.home_visit_percentage,"test_drive_percentage":event.test_drive_percentage,
+                                "per_day_asking":event.per_day_asking,"enquiry_total":event.enquiry_total})
+            
+            
+     return render (request,"teamleader_details.html",team_data1)
+
+
+    
+def sales_analytics_view(request):
+    sales_all=salesEx.objects.all()
+   
+    return render(request,'sales_dashboard.html',{'sales_all':sales_all})
+
+from django.shortcuts import render
+from .forms import CSVUploadForm
+from .models import TeamLeaderData, Sample, salesEx
+
+def upload_csv(request):
+    if request.method == 'POST':
+        form = CSVUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            csv_file = form.cleaned_data['csv_file']
+            model_selection = form.cleaned_data['model_selection']
+
+            # Process the uploaded file based on the selected model
+            if model_selection == 'team':
+                team(csv_file)
+            elif model_selection == 'sample':
+                Please_upload_csv(csv_file)
+            elif model_selection == 'sales_ex':
+                sales_ex(csv_file)
+
+            # Redirect or display success message
+
+    else:
+        form = CSVUploadForm()
+ 
+    return render(request, 'upload1.html', {'form': form})
+
+def vechicledetails(request):
+     vechicle_data1 = {}
+     vechicle_data=Sample.objects.all()
+
+     if request.method=="GET":
+            user_n = request.GET.get('event')
+            print(user_n)
+            for event in vechicle_data:
+                if event.Model == user_n:
+                    vechicle_data1.update({"id":event.id,"Model":event.Model,'WS_TGT':event.WS_TGT,"WS_ACH":event.WS_ACH,"Total_Probable_Stock":event.Total_Probable_Stock,
+                                "BAL_WS":event.BAL_WS,'DMS_Stock':event.DMS_Stock})
+            
+            
+     return render (request,"vechicle_table.html",vechicle_data1)
+
+def unique_tl(request):
+    return render (request,'uniquetl.html')
+
+def unique_sales(request):
+    return render (request,'uniquesales_ex.html')
+
+
+
+
 
 
 

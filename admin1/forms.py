@@ -33,6 +33,22 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
+from django import forms
+
+class CSVUploadForm(forms.Form):
+    csv_file = forms.FileField()
+    model_choices = (
+        ('team', 'TeamLeaderData'),
+        ('sample', 'Sample'),
+        ('sales_ex', 'salesEx'),
+    )
+    model_selection = forms.ChoiceField(choices=model_choices)
+
+
+
+    
+
+
 
     # Rest of the view logic
 

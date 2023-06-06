@@ -16,6 +16,68 @@ License: For each use you must have a valid license purchased only from above li
   <!--begin::Head-->
   <head>
 
+    
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+          margin: 0;
+          padding: 0;
+      }
+      .container {
+          max-width: 400px;
+          margin: 40px auto;
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+      }
+      .helptext{
+          display: none !important;
+      }
+
+      h1 {
+          text-align: center;
+          color: #333;
+      }
+
+      .form-group {
+            justify-content: center;
+            align-items: center;
+      }
+
+      label {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+          width: 100% !important;
+  padding: 8px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 50px !important;
+         
+      }
+
+      button[type="submit"] {
+          background-color: #4CAF50;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 50px;
+          cursor: pointer;
+          font-size: 15px;
+          margin-top: 240px;
+      }
+
+      button[type="submit"]:hover {
+          background-color: #45a049;
+      }
+  </style>
+
     <title>
 
     </title>
@@ -38,6 +100,7 @@ License: For each use you must have a valid license purchased only from above li
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link
       rel="stylesheet"
@@ -93,6 +156,45 @@ License: For each use you must have a valid license purchased only from above li
         }
         document.documentElement.setAttribute("data-bs-theme", themeMode);
       }
+
+
+      fetch("api/user") // Replace with the actual API endpoint
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error("Failed to fetch API data");
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        var tableBody = document.getElementById("table-body");
+
+        // Clear existing table rows
+        tableBody.innerHTML = "";
+
+        // Iterate over the data and generate table rows
+        data.forEach(function(item) {
+          var row = document.createElement("tr");
+
+          var nameCell = document.createElement("td");
+          nameCell.textContent = item.name;
+          row.appendChild(nameCell);
+
+          var emailCell = document.createElement("td");
+          emailCell.textContent = item.email;
+          row.appendChild(emailCell);
+
+          var phoneCell = document.createElement("td");
+          phoneCell.textContent = item.phone;
+          row.appendChild(phoneCell);
+
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+
+
     </script>
     <!--end::Theme mode setup on page load-->
     <!--begin::App-->
@@ -145,7 +247,7 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
-                    <div
+                    <div  
                       data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                       data-kt-menu-placement="bottom-start"
                       class="menu-item menu-lg-down-accordion me-0 me-lg-2"
@@ -160,21 +262,7 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
-                    <div
-                      data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                      data-kt-menu-placement="bottom-start"
-                      class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2"
-                    >
-                      <!--begin:Menu link-->
-                      
-                      <span class="navbar-nav">
-                        <li><a href="/billing_summary/">Billing Summary</a></li>
-                        
-                        
-                        <span class="menu-arrow d-lg-none"></span>
-                      </span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    </div>
+                    
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
                     <div
@@ -185,7 +273,7 @@ License: For each use you must have a valid license purchased only from above li
                       <!--begin:Menu link-->
                       <span class="navbar-nav">
                         <!-- <span class="menu-title"> </span> -->
-                        <li><a href="/usermanagement">User Management</a></li>
+                        <li><a href="/usermanagement/">User Management</a></li>
                        
                         <span class="menu-arrow d-lg-none"></span>
                       </span>
@@ -318,8 +406,7 @@ License: For each use you must have a valid license purchased only from above li
                     data-kt-menu-attach="parent"
                     data-kt-menu-placement="bottom-end"
                   >
-
-                  {{ username }}
+                    {{ username }}
                   </div>
 
                   <button

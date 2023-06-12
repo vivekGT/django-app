@@ -291,20 +291,20 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 def header(request):
-    # try:
-    #     if request.method=="POST":
-    #         user_n = request.POST.get('username')
-    #         data = {
-    #             "username": user_n
-    #         }
+    try:
+        if request.method=="POST":
+            user_n = request.POST.get('username')
+            data = {
+                "username": user_n
+            }
            
 
-    #         return render(request, 'header.html', data)
-    # except:
-    #     data = {
-    #             "username": "User"
-    #         }
-        return render(request, 'header.html')
+            return render(request, 'header.html', data)
+    except:
+        data = {
+                "username": "User"
+            }
+        return render(request, 'header.html', data)
 def team_scorecard(request):
     team_all=TeamLeaderData.objects.all()
     return render (request,"user_dashboard.html",{"team_all":team_all})

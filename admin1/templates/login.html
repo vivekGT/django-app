@@ -63,13 +63,11 @@
 <body>
     <div class="container">
         <h1>User Login</h1>
-        <form method="post",action={% url 'header' %}>
+        <form method="post">
             {% csrf_token %}
             <div class="form-group">
                 {{ form.as_p }}
             </div>
-            <div class="register-button">
-              </div>
               <button type="submit">Login</button>
         </form>
     </div>

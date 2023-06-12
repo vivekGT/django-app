@@ -1,82 +1,56 @@
- {% include "header.html" %}
+{% include "header.html" %}
  {% load static %}
- 
-
- 
- <div class="col-xxl-6 mt-10" style=" position: relative;
+ <br />
+ <br />
+ <br />
+ <br /><br />
+ <div class="col-xxl-6" style=" position: absolute;
  top: 50%;
  left: 50%;
  transform: translate(-50%, -50%);
  padding: 10px">
-        
   <!--begin::Engage widget 10-->
-  <div class="card card-flush h-md-80"> 
+  <div class="card card-flush h-md-100">
       <!--begin::Body-->
-      <div class="card-body d-flex flex-column justify-content-between mt-9 bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0" style="background-position: 100% 50%; background-image:url('/metronic8/demo1/assets/media/stock/900x600/42.png')">     
-          <!--begin::Wrapper--> 
-          <div class="mb-2">
-              <!--begin::Title-->      
-              <div class="fs-2hx  text-blue-800 text-center mb-13" style="color: #009ef7">
+      <div class="card-body d-flex flex-column justify-content-between mt-9 bgi-no-repeat bgi-size-cover bgi-position-x-center pb-0" style="background-position: 100% 50%; background-image:url('/metronic8/demo1/assets/media/stock/900x600/42.png')">
+          <!--begin::Wrapper-->
+          <div class="mb-10">
+              <!--begin::Title-->
+              <div class="fs-2hx  text-blue-800 text-center mb-13" style="color: #009EF7">
                   <span class="me-2">
-                       UPLOAD CSV FILE                       
-                  </span>                                
+                       UPLOAD CSV FILE
+                  </span>
               </div>
-              <!--end::Title--> 
-              
-            <p style="color: red;" >     <span style="color: black;">1. </span> Please upload Vehicle data in Sample</p>
-              <p style="color: red;">      <span style="color: black;">2. </span> Please upload team leader data in TeamLeaderData</p>
-           <p style="color: red;">      <span style="color: black;">3. </span> Please upload SalesEx data in sales_ex</p> 
-              <br>
-              <br>
-              <!--begin::Action--> 
-              <div class="text-center mt-0">
+              <!--end::Title-->
+              <!--begin::Action-->
+              <div class="text-center">
                   <!-- <a href="#" class="btn btn-sm btn-dark fw-bold" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">
                       Upgrade Now
                   </a>  -->
-                
-              
-<!-- 
-                  <p style="color: red;" >Please upload Vehicle data in Sample</p>
-                  <p style="color: red;">Please upload team leader data in TeamLeaderData</p>
-                  <p style="color: red;">Please upload SalesEx data in sales_ex</p> 
-                  <br>
-                  <br>
-                 -->
-                  <form method="post" enctype="multipart/form-data" style="border: 2px solid #ccc; padding: 10px;">
+                  <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" style="margin-top: 10px;">Upload</button>
-                </form>
-                
-                
-                </form>
-                    
+                    <input type="file" name="csv_file">
                     <br/>
-
-                    <!-- <button class="btn btn-sm btn-dark fw-bold" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan" type="submit">Upload</button>
-                  </form> -->
+                    <br/>
+                    <br/>
+                    <button class="btn btn-sm btn-dark fw-bold" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan" type="submit">Upload</button>
+                  </form>
               </div>
-              <!--begin::Action--> 
+              <!--begin::Action-->
           </div>
-          <!--begin::Wrapper-->   
-  
+          <!--begin::Wrapper-->
           <!--begin::Illustration-->
-          <img class="mx-auto h-150px h-lg-200px  theme-light-show" src="/metronic8/demo1/assets/media/illustrations/misc/upgrade.svg" alt="">   
-          <img class="mx-auto h-150px h-lg-200px  theme-dark-show" src="/metronic8/demo1/assets/media/illustrations/misc/upgrade-dark.svg" alt="">   
+          <img class="mx-auto h-150px h-lg-200px  theme-light-show" src="/metronic8/demo1/assets/media/illustrations/misc/upgrade.svg" alt="">
+          <img class="mx-auto h-150px h-lg-200px  theme-dark-show" src="/metronic8/demo1/assets/media/illustrations/misc/upgrade-dark.svg" alt="">
           <!--end::Illustration-->
       </div>
       <!--end::Body-->
-  </div>    
+  </div>
   <!--end::Engage widget 10-->
-  
        </div>
-
 </script>
-
 <script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
 <script src="{%static 'js/scripts.bundle.js'%}"></script>
-
-
 </body>
 <!--end::Body-->
 </html>

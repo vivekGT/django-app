@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import JsonResponse
 from.models import Person,Sample
 import csv
 from django.contrib.auth.decorators import login_required
@@ -7,39 +8,6 @@ from .forms import RegistrationForm
 from .forms import LoginForm
 from django.contrib.auth import get_user_model
 from .models import User,salesEx
-# def upload_csv(request):
-#     if request.method == 'POST' and request.FILES.get('csv_file'):
-#         csv_file = request.FILES['csv_file']
-
-#         # Read the file in binary mode
-#         raw_data = csv_file.read()
-
-#         # Decode the file, ignoring any errors or null bytes
-#         decoded_file = raw_data.decode('utf-8', errors='ignore').replace('\x00', '')
-
-#         csv_data = csv.reader(decoded_file.splitlines(), delimiter=',')
-#         print(csv_data)
-
-
-#         for row in csv_data:
-#             print(row)
-#             # Assuming the CSV file has columns: name, email, age
-            
-#             name = row[0]
-#             email = row[1]
-#             age = row[2]
-#             print(name)
-#             print(email)
-#             print(age)
-#             # Save the data in the database (adjust this part according to your model and database setup)
-#             # Example using a model called Person:
-#             person = Person(name=name, email=email, age=age)
-#             person.save()
-        
-#         return render(request, 'success.html')
-    
-#     return render(request, 'upload.html')
-
 def sales_ex(request):
     if request.method == 'POST' and request.FILES.get('csv_file'):
         csv_file = request.FILES['csv_file']
@@ -259,7 +227,7 @@ def sales_table(request):
                     sales_data1.update({"id":event.id,"team_leader_name":event.team_leader_name,'dse_name':event.dse_name,"home_visit":event.home_visit,"test_drive":event.test_drive,
                                 "ageing":event.ageing,"enquiry_total":event.enquiry_total,'mspin':event.mspin,'unit_name':event.unit_name}) 
             
-    return render (request,"sales_table.html",sales_data1)
+    return JsonResponse(sales_data1,safe=False) 
 
 
 def restricted_view(request):
@@ -304,7 +272,7 @@ def header(request):
         data = {
                 "username": "User"
             }
-        return render(request, 'header.html', data)
+        return render(request, 'header.html', data) 
 def team_scorecard(request):
     team_all=TeamLeaderData.objects.all()
     return render (request,"user_dashboard.html",{"team_all":team_all})
@@ -312,7 +280,6 @@ def team_scorecard(request):
 def teamleaderdetails(request):
      team_data1 = {}
      team_data=TeamLeaderData.objects.all()
-
      if request.method=="GET":
             user_n = request.GET.get('event')
             print(user_n)
@@ -322,7 +289,7 @@ def teamleaderdetails(request):
                                 "per_day_asking":event.per_day_asking,"enquiry_total":event.enquiry_total})
             
             
-     return render (request,"teamleader_details.html",team_data1)
+     return JsonResponse(team_data1,safe=False)   
 
 
     
@@ -335,27 +302,9 @@ from django.shortcuts import render
 from .forms import CSVUploadForm
 from .models import TeamLeaderData, Sample, salesEx
 
-def upload_csv(request):
-    if request.method == 'POST':
-        form = CSVUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            csv_file = form.cleaned_data['csv_file']
-            model_selection = form.cleaned_data['model_selection']
 
-            # Process the uploaded file based on the selected model
-            if model_selection == 'team':
-                team(csv_file)
-            elif model_selection == 'sample':
-                Please_upload_csv(csv_file)
-            elif model_selection == 'sales_ex':
-                sales_ex(csv_file)
 
-            # Redirect or display success message
 
-    else:
-        form = CSVUploadForm()
- 
-    return render(request, 'upload1.html', {'form': form})
 
 def vechicledetails(request):
      vechicle_data1 = {}
@@ -368,12 +317,20 @@ def vechicledetails(request):
                 if event.Model == user_n:
                     vechicle_data1.update({"id":event.id,"Model":event.Model,'WS_TGT':event.WS_TGT,"WS_ACH":event.WS_ACH,"Total_Probable_Stock":event.Total_Probable_Stock,
                                 "BAL_WS":event.BAL_WS,'DMS_Stock':event.DMS_Stock})
-            
-            
-     return render (request,"vechicle_table.html",vechicle_data1)
+        
+     return JsonResponse(vechicle_data1,safe=False)        
+     
 
-def unique_tl(request):
+
+def unique_tl(request): 
     return render (request,'uniquetl.html')
 
 def unique_sales(request):
     return render (request,'uniquesales_ex.html')
+
+
+
+
+
+
+

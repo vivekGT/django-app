@@ -4,611 +4,882 @@
 
 
 
-        <br />
-        <br />
-        <br />
-        <br /><br />
-        <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
-            <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
-                <div class=" h-10 row g-6 mb-6 g-xl-9 mb-xl-12 ">
-                    <div class="col-md-6 col-xxl-12">
-                         
-                         <h1>Vehicle Data</h1>
+<br />
+<br />
+<br />
+<br /><br />
+<div class="row g-6 mb-6 g-xl-9 mb-xl-9">
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
+        <div class=" h-10 row g-6 mb-6 g-xl-9 mb-xl-12 ">
+            <div class="col-md-6 col-xxl-12">
 
-                    </div></div>
-                <div class="col-md-6 col-xxl-6">
-                  <div class="card card">
-      
-                    <canvas id="myChart"></canvas>
-                  </div>
-                </div>
-                <div class="col-md-6 col-xxl-6">
-                  <div class="card card">
-                    <canvas id="myChart2"></canvas>
-                  </div>
-                </div>
-      
-              </div>
-
-              <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
-                <div class="col-md-6 col-xxl-12">
-                     
-                     <h1>Team Leader Data</h1>
-
-
-                </div></div>
-              <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
-                <div class="col-md-6 col-xxl-6">
-                  <div class="card card">
-      
-                    <canvas id="myChart3"></canvas>
-                  </div>
-                </div>
-                <div class="col-md-6 col-xxl-6">
-                  <div class="card card">
-                    <canvas id="myChart4"></canvas>
-                  </div>
-                </div>
-                <h1>DSE's Data</h1>
-                <br>
-                <br>
-            </br>
-
-
-                <div class="col-md-6 col-xxl-6">
-                    <div class="card card">
-                      <canvas id="myChart5"></canvas>
-                    </div>
-                  </div>
-                  <div class="col-md-6 col-xxl-6">
-                    <div class="card card">
-                      <canvas id="myChart6"></canvas>
-                    </div>
-                  </div>
-      
-              </div>
-            <!--begin::Followers-->
-            <!--begin::Col-->
-            <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
-                <div class="col-md-6 col-xxl-12">
-                     <h1>Vehicle Cards Data</h1>
-
-                </div></div>
-            {% for event in analytics_sample %}
-            <div role="button" onclick="rediecttTo('{{event.Model}}')" class="col-md-6 col-xxl-2">
-                <!--begin::Card-->
-                <div class="card hover-elevate-up">
-                    <!--begin::Card body-->
-                    <div class="card-body d-flex flex-center flex-column py-9 px-5 ">
-                        <!--begin::Avatar-->
-                        <div class="symbol symbol-65px symbol-circle mb-5">
-                            <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">{{ event.Model|make_list|first}}</span>
-                            <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div>
-                        </div>
-                        <!--end::Avatar-->
-                        <!--begin::Name-->
-                        <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{event.Model}}</a>
-                        <!--end::Name-->
-                        <!--begin::Position-->
-                        <div class="fw-semibold text-gray-400 mb-6">Model Name</div>
-                        <!--end::Position-->
-                        <!--begin::Info-->
-                        <div class="d-flex flex-center flex-wrap mb-5">
-                            <!--begin::Stats-->
-                            <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
-                                <div class="fs-6 fw-bold text-gray-700">{{event.DMS_Stock}}</div>
-                                <div class="fw-semibold text-gray-400">DMS Stock</div>
-                            </div>
-                            <!--end::Stats-->
-                            <!--begin::Stats-->
-                            <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
-                                <div class="fs-6 fw-bold text-gray-700">{{event.Total_Probable_Stock}}</div>
-                                <div class="fw-semibold text-gray-400">Total Probable Stock </div>
-                            </div>
-                            <!--end::Stats-->
-                        </div>
-                        <!--end::Info-->
-                        <!--begin::Follow-->
-                        
-                        <!--end::Follow-->
-                    </div>
-                    <!--begin::Card body-->
-                </div>
-                <!--begin::Card-->
-            </div>
-            <!--end::Col-->
-            <!--begin::Col-->
-            {% endfor %}
-
-
-
-
-
-            <!--end::Col-->
-            <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
-                <div class="col-md-6 col-xxl-12">
-                     
-                     <h1>Team Leaders Cards</h1>
-
-                </div>
-            </div>
-
-                <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
-                    <!--begin::Followers-->
-                    <!--begin::Col-->            
-                    {% for event in team_data %}
-                    <div role="button" onclick="rediectTo('{{event.team_leader_name}}')" class="col-md-6 col-xxl-2">
-                        <!--begin::Card-->
-                        <div class="card hover-elevate-up">
-        
-                            <!--begin::Card body-->
-                            <div class="card-body d-flex flex-center flex-column py-9 px-5 ">
-                                <!--begin::Avatar-->
-                                <div class="symbol symbol-65px symbol-circle mb-5">                            
-                                    <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">{{ event.team_leader_name|make_list|first}}</span>
-                                    <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div>
-                                </div>
-                                <!--end::Avatar-->
-                                <!--begin::Name-->
-                                <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{ event.team_leader_name }}</a>
-                                <!--end::Name-->
-                                <!--begin::Position-->
-                                <div class="fw-semibold text-gray-400 mb-6">Team Leader</div>
-                                <!--end::Position-->
-                                <!--begin::Info-->
-                                <div class="d-flex flex-center flex-wrap mb-5">
-                                    <!--begin::Stats-->
-                                    <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
-                                        <div class="fs-6 fw-bold text-gray-700">{{event.enquiry_total}}</div>
-                                        <div class="fw-semibold text-gray-400">Total Enquiries</div>
-                                    </div>
-                                    <!--end::Stats-->
-                                    <!--begin::Stats-->
-                                    <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
-                                        <div class="fs-6 fw-bold text-gray-700">{{event.team_leader_territory}}</div>
-                                        <div class="fw-semibold text-gray-400">Territory</div>
-                                    </div>
-                                    <!--end::Stats-->
-                                </div>
-                                <!--end::Info-->
-                                <!--begin::Follow-->
-                               
-                                <!--end::Follow-->
-                            </div>
-                            <!--begin::Card body-->
-                        </div>
-                        <!--begin::Card-->
-                    </div>            
-                    {% endfor %}
-                    <!--end::Col-->
-                </div>
-                 
-
-
-
-
-                  <!--end::Col-->
-                  <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
-                    <div class="col-md-6 col-xxl-12">
-                         
-                         <h1>DSE's Data </h1>
-    
-                    </div>
-                </div>
-    
-                    <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
-                        <!--begin::Followers-->
-                        <!--begin::Col-->            
-                        {% for event in sales_data %}
-                        <div role="button" onclick="redirectTo('{{event.dse_name}}')" class="col-md-6 col-xxl-2">
-                            <!--begin::Card-->
-                            <div class="card hover-elevate-up">
-            
-                                <!--begin::Card body-->
-                                <div class="card-body d-flex flex-center flex-column py-9 px-5 ">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-65px symbol-circle mb-5">                            
-                                        <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">{{ event.dse_name|make_list|first}}</span>
-                                        <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3"></div>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Name-->
-                                    <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{ event.dse_name}}</a>
-                                    <!--end::Name-->
-                                    <!--begin::Position-->
-                                    <div class="fw-semibold text-gray-400 mb-6">DSE</div>
-                                    <!--end::Position-->
-                                    <!--begin::Info-->
-                                    <div class="d-flex flex-center flex-wrap mb-5">
-                                        <!--begin::Stats-->
-                                        <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
-                                            <div class="fs-6 fw-bold text-gray-700">{{event.enquiry_total}}</div>
-                                            <div class="fw-semibold text-gray-400">Total Enquiries</div>
-                                        </div>
-                                        <!--end::Stats-->
-                                        <!--begin::Stats-->
-                                        <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
-                                            <div class="fs-6 fw-bold text-gray-700">{{event.unit_name}}</div>
-                                            <div class="fw-semibold text-gray-400">Unit Name</div>
-                                        </div>
-                                        <!--end::Stats-->
-                                    </div>
-                                    <!--end::Info-->
-                                    <!--begin::Follow-->
-                                   
-                                    <!--end::Follow-->
-                                </div>
-                                <!--begin::Card body-->
-                            </div>
-                            <!--begin::Card-->
-                        </div>            
-                        {% endfor %}
-                        <!--end::Col-->
-                     
-                    </div>
-
-     
+                <h1>Vehicle Data</h1>
 
             </div>
-      <!--end::Page-->
+        </div>
+        <div class="col-md-6 col-xxl-6">
+            <div class="card card">
+
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 col-xxl-6">
+            <div class="card card">
+                <canvas id="myChart2"></canvas>
+            </div>
+        </div>
+
     </div>
-    
 
-    <!--end::App-->
-    <script>
-      // Select the canvas element
-      fetch('/api/data/')
-      .then(response => response.json())
-      .then(data => {
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
+        <div class="col-md-6 col-xxl-12">
 
-        const models = data.map(entry => entry.Model);
-        // const wsTgt = data.map(entry => entry.WS_TGT);
-        // const dmsStock = data.map(entry => entry.DMS_Stock);
-        const tgt = data.map(entry => entry.WS_TGT);
-        const ach = data.map(entry => entry.WS_ACH);
-        const dms = data.map(entry => entry.DMS_Stock);
-
-        // const wsach = data.map(entry=>entry.WS_ACH);
-        // const balws= data.map(entry=>entry.BAL_WS);
-         
-        var barColors = [
-  '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
-  '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
-  '#9966FF', '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56',
-  '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384', '#36A2EB'
-];
-      var ctx = document.getElementById('myChart').getContext('2d');
-      // Create the line chart
-      var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: models,
-              datasets: [{
-                  label: 'dms_stock',
-                  data: dms,
-                  fill: false,
-                  borderColor: 'rgb(75, 192, 192)',
-                  backgroundColor:'#FF6384',
-                  tension: 0.1
-              },
-              {
-                  label: 'ws_tgt',
-                  data: tgt,
-                  fill: false,
-                  borderColor: 'rgb(75, 192, 192)',
-                  backgroundColor:'#36A2EB',
-                  tension: 0.1
-              },
-              {
-                  label: 'ws_ach',
-                  data: ach,
-                  fill: false,
-                  borderColor: 'rgb(75, 192, 192)',
-                  backgroundColor:'#FFCE56',
-                  tension: 0.1
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-          }
-      });
+            <h1>Team Leader Data</h1>
 
 
-    })
+        </div>
+    </div>
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
+        <div class="col-md-6 col-xxl-6">
+            <div class="card card">
+
+                <canvas id="myChart3"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 col-xxl-6">
+            <div class="card card">
+                <canvas id="myChart4"></canvas>
+            </div>
+        </div>
+        <h1>DSE's Data</h1>
+        <br>
+        <br>
+        </br>
+
+
+        <div class="col-md-6 col-xxl-6">
+            <div class="card card">
+                <canvas id="myChart5"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6 col-xxl-6">
+            <div class="card card">
+                <canvas id="myChart6"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <!--begin::Followers-->
+    <!--begin::Col-->
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
+        <div class="col-md-6 col-xxl-12">
+            <h1>Vehicle Cards Data</h1>
+
+        </div>
+    </div>
+    {% for event in analytics_sample %}
+    <div role="button" data-bs-toggle="modal" data-bs-target="#VehicleData" class="col-md-6 col-xxl-2"
+        onclick="VehicleData('{{event.Model}}')">
+        <!--begin::Card-->
+        <div class="card hover-elevate-up">
+            <!--begin::Card body-->
+            <div class="card-body d-flex flex-center flex-column py-9 px-5 ">
+                <!--begin::Avatar-->
+                <div class="symbol symbol-65px symbol-circle mb-5">
+                    <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">{{event.Model|make_list|first}}</span>
+                    <div
+                        class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3">
+                    </div>
+                </div>
+                <!--end::Avatar-->
+                <!--begin::Name-->
+                <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{event.Model}}</a>
+                <!--end::Name-->
+                <!--begin::Position-->
+                <div class="fw-semibold text-gray-400 mb-6">Model Name</div>
+                <!--end::Position-->
+                <!--begin::Info-->
+                <div class="d-flex flex-center flex-wrap mb-5"  style="flex-direction: column;">
+                    <!--begin::Stats-->
+                    <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                        <div class="fs-6 fw-bold text-gray-700">{{event.DMS_Stock}}</div>
+                        <div class="fw-semibold text-gray-400">DMS Stock</div>
+                    </div>
+                    <!--end::Stats-->
+                    <!--begin::Stats-->
+                    <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                        <div class="fs-6 fw-bold text-gray-700">{{event.Total_Probable_Stock}}</div>
+                        <div class="fw-semibold text-gray-400">Total Probable Stock </div>
+                    </div>
+                    <!--end::Stats-->
+                </div>
+                <!--end::Info-->
+                <!--begin::Follow-->
+
+                <!--end::Follow-->
+            </div>
+            <!--begin::Card body-->
+        </div>
+        <!--begin::Card-->
+    </div>
+    <!--end::Col-->
+    <!--begin::Col-->
+    {% endfor %}
+
+
+
+
+
+    <!--end::Col-->
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
+        <div class="col-md-6 col-xxl-12">
+
+            <h1>Team Leaders Cards</h1>
+
+        </div>
+    </div>
+
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
+        <!--begin::Followers-->
+        <!--begin::Col-->
+        {% for event in team_data %}
+        <div role="button" data-bs-toggle="modal" data-bs-target="#TeamLeaderData" class="col-md-6 col-xxl-2"
+            onclick="TeamLeaderData('{{ event.team_leader_name }}')">
+            <!--begin::Card-->
+            <div class="card hover-elevate-up">
+
+                <!--begin::Card body-->
+                <div class="card-body d-flex flex-center flex-column py-9 px-5 ">
+                    <!--begin::Avatar-->
+                    <div class="symbol symbol-65px symbol-circle mb-5">
+                        <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">{{event.team_leader_name|make_list|first}}</span>
+                        <div
+                            class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3">
+                        </div>
+                    </div>
+                    <!--end::Avatar-->
+                    <!--begin::Name-->
+                    <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{ event.team_leader_name }}</a>
+                    <!--end::Name-->
+                    <!--begin::Position-->
+                    <div class="fw-semibold text-gray-400 mb-6">Team Leader</div>
+                    <!--end::Position-->
+                    <!--begin::Info-->
+                    <div class="d-flex flex-center flex-wrap mb-5"  style="flex-direction: column;">
+                        <!--begin::Stats-->
+                        <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                            <div class="fs-6 fw-bold text-gray-700">{{event.enquiry_total}}</div>
+                            <div class="fw-semibold text-gray-400">Total Enquiries</div>
+                        </div>
+                        <!--end::Stats-->
+                        <!--begin::Stats-->
+                        <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                            <div class="fs-6 fw-bold text-gray-700">{{event.team_leader_territory}}</div>
+                            <div class="fw-semibold text-gray-400">Territory</div>
+                        </div>
+                        <!--end::Stats-->
+                    </div>
+                    <!--end::Info-->
+                    <!--begin::Follow-->
+
+                    <!--end::Follow-->
+                </div>
+                <!--begin::Card body-->
+            </div>
+            <!--begin::Card-->
+        </div>
+        {% endfor %}
+        <!--end::Col-->
+    </div>
+
+
+
+
+
+    <!--end::Col-->
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-12">
+        <div class="col-md-6 col-xxl-12">
+
+            <h1>DSE's Data </h1>
+
+        </div>
+    </div>
+
+    <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
+        <!--begin::Followers-->
+        <!--begin::Col-->
+        {% for event in sales_data %}
+        <div role="button" data-bs-toggle="modal" data-bs-target="#DseData" class="col-md-6 col-xxl-2"
+        onclick="DseData('{{ event.dse_name}}')">
+            <!--begin::Card-->
+            <div class="card hover-elevate-up">
+
+                <!--begin::Card body-->
+                <div class="card-body d-flex flex-center flex-column py-9 px-5 ">
+                    <!--begin::Avatar-->
+                    <div class="symbol symbol-65px symbol-circle mb-5">
+                        <span class="symbol-label fs-2x fw-semibold text-warning bg-light-warning">{{event.dse_name|make_list|first}}</span>
+                        <div
+                            class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-body h-15px w-15px ms-n3 mt-n3">
+                        </div>
+                    </div>
+                    <!--end::Avatar-->
+                    <!--begin::Name-->
+                    <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bold mb-0">{{ event.dse_name}}</a>
+                    <!--end::Name-->
+                    <!--begin::Position-->
+                    <div class="fw-semibold text-gray-400 mb-6">DSE</div>
+                    <!--end::Position-->
+                    <!--begin::Info-->
+                    <div class="d-flex flex-center flex-wrap mb-5"  style="flex-direction: column;">
+                        <!--begin::Stats-->
+                        <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                            <div class="fs-6 fw-bold text-gray-700">{{event.enquiry_total}}</div>
+                            <div class="fw-semibold text-gray-400">Total Enquiries</div>
+                        </div>
+                        <!--end::Stats-->
+                        <!--begin::Stats-->
+                        <div class="border border-dashed rounded min-w-90px py-3 px-4 mx-2 mb-3">
+                            <div class="fs-6 fw-bold text-gray-700">{{event.unit_name}}</div>
+                            <div class="fw-semibold text-gray-400">Unit Name</div>
+                        </div>
+                        <!--end::Stats-->
+                    </div>
+                    <!--end::Info-->
+                    <!--begin::Follow-->
+
+                    <!--end::Follow-->
+                </div>
+                <!--begin::Card body-->
+            </div>
+            <!--begin::Card-->
+        </div>
+        {% endfor %}
+        <!--end::Col-->
+
+    </div>
+
+
+    <div class="modal fade" id="VehicleData" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-900px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header"  style="background-color: #9abf88;">
+                    <!--begin::Modal title-->
+                    <h2>VEHICLE'S DATA</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="bi bi-x fs-1 " style="color: black;">
+                            <span class="path1">X</span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-lg-10 px-lg-10">
+                    <!--begin::Stepper-->
+                    <table class="table  table-striped mt-8">
+                        <thead style="background-color: #dcdee6;">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">DMS Stock</th>
+                                <th scope="col">WS TGT</th>
+                                <th scope="col">WS ACH</th>
+                                <th scope="col">Total Probable Stock</th>
+                                <th scope="col">BAL WS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="Vehicle-Cards-Data" id="tbody">
+
+
+
+
+                        </tbody>
+                    </table>
+                    <!--end::Stepper-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+    <div class="modal fade" id="TeamLeaderData" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-900px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header"  style="background-color: #9abf88;">
+                    <!--begin::Modal title-->
+                    <h2>TEAMLEADER'S DATA</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="bi bi-x fs-1 " style="color: black;">
+                            <span class="path1">X</span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-lg-10 px-lg-10">
+                    <!--begin::Stepper-->
+                    <table class="table  table-striped mt-8">
+                        <thead style="background-color: #dcdee6;">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Team leader name</th>
+                                <th scope="col">Territory</th>
+                                <th scope="col">Home visit %</th>
+                                <th scope="col">Test Drive %</th>
+                                <th scope="col">Per day asking</th>
+                                <th scope="col">Total Enquiry</th>
+                            </tr>
+                        </thead>
+                        <tbody class="Team-Leader-Data" id="teamLeaderBody">
+
+
+
+
+                        </tbody>
+                    </table>
+                    <!--end::Stepper-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <div class="modal fade" id="DseData" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-900px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" style="background-color: #9abf88;">
+                    <!--begin::Modal title-->
+                    <h2>DSE'S DATA</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="bi bi-x fs-1 " style="color: black;">
+                            <span class="path1">X</span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-lg-10 px-lg-10">
+                    <!--begin::Stepper-->
+                    <table class="table  table-striped mt-8">
+                        <thead style="background-color: #dcdee6;">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Team leader name</th>
+                                <th scope="col">Dse name</th>
+                                <th scope="col">Home visit %</th>
+                                <th scope="col">Test Drive %</th>
+                                <th scope="col">Mspin</th>
+                                <th scope="col">Ageing</th>
+                                <th scope="col">Unit name</th>
+                                <th scope="col">Enquiry total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="Dse-Data" id="DseDataBody">
+
+
+
+
+                        </tbody>
+                    </table>
+                    <!--end::Stepper-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+
+</div>
+<!--end::Page-->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<!--end::App-->
+<script>
+    // Select the canvas element
     fetch('/api/data/')
-      .then(response => response.json())
-      .then(data => {
-        // Extract required data
-        const models = data.map(entry => entry.Model);
-        // const wsTgt = data.map(entry => entry.WS_TGT);
-        // const dmsStock = data.map(entry => entry.DMS_Stock);
-        const totalProbableStock = data.map(entry => entry.Total_Probable_Stock);
-        // const wsach = data.map(entry=>entry.WS_ACH);
-        // const balws= data.map(entry=>entry.BAL_WS);
-       // Select the canvas element
-    var ctx2 = document.getElementById('myChart2').getContext('2d');
+        .then(response => response.json())
+        .then(data => {
 
-// Create the bar chart
-var barColors = [
-  '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
-  '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
-  '#9966FF', '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56',
-  '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384', '#36A2EB'
-];
-var myChart = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels: models,
-        datasets: [{
-            label: 'Total Probable Stocks',
-            data: totalProbableStock,
-            backgroundColor: "teal",
-            // borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Bar Chart'
-            }
-        }
-    }
-});
-      })
+            const models = data.map(entry => entry.Model);
+            // const wsTgt = data.map(entry => entry.WS_TGT);
+            // const dmsStock = data.map(entry => entry.DMS_Stock);
+            const tgt = data.map(entry => entry.WS_TGT);
+            const ach = data.map(entry => entry.WS_ACH);
+            const dms = data.map(entry => entry.DMS_Stock);
 
+            // const wsach = data.map(entry=>entry.WS_ACH);
+            // const balws= data.map(entry=>entry.BAL_WS);
 
-        //  data 2
-
-        fetch('/api/data2/')
-      .then(response => response.json())
-      .then(data => {
-
-        const team_leader = data.map(entry => entry.team_leader_name);
-        // const wsTgt = data.map(entry => entry.WS_TGT);
-        // const dmsStock = data.map(entry => entry.DMS_Stock);
-        const enquiry = data.map(entry => entry.enquiry_total);
-        // const wsach = data.map(entry=>entry.WS_ACH);
-        // const balws= data.map(entry=>entry.BAL_WS);
-         let enquiryData = enquiry.push(0);
-     
-      var ctx = document.getElementById('myChart3').getContext('2d');
-      // Create the line chart
-      var barColors = [
-      '#D4E4FF', // Alice Blue
-  '#ADD8E6', // Light Blue
-  '#87CEEB', // Sky Blue
-  '#6495ED', // Cornflower Blue
-  '#4169E1', // Royal Blue
-  '#0000FF'  // Blue
-];
-;
-
-      var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: team_leader,
-              datasets: [{
-                  label: 'Number of total enqiry',
-                  data: enquiry,
-                  fill: false,
-                //   borderColor: ',
-                  backgroundColor: barColors,
-                  tension: 0.1
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-          }
-      });
+            var barColors = [
+                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+                '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+                '#9966FF', '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56',
+                '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384', '#36A2EB'
+            ];
+            var ctx = document.getElementById('myChart').getContext('2d');
+            // Create the line chart
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: models,
+                    datasets: [{
+                        label: 'dms_stock',
+                        data: dms,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: '#FF6384',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'ws_tgt',
+                        data: tgt,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: '#36A2EB',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'ws_ach',
+                        data: ach,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: '#FFCE56',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
 
 
-    })
+        })
+    fetch('/api/data/')
+        .then(response => response.json())
+        .then(data => {
+            // Extract required data
+            const models = data.map(entry => entry.Model);
+            // const wsTgt = data.map(entry => entry.WS_TGT);
+            // const dmsStock = data.map(entry => entry.DMS_Stock);
+            const totalProbableStock = data.map(entry => entry.Total_Probable_Stock);
+            // const wsach = data.map(entry=>entry.WS_ACH);
+            // const balws= data.map(entry=>entry.BAL_WS);
+            // Select the canvas element
+            var ctx2 = document.getElementById('myChart2').getContext('2d');
+
+            // Create the bar chart
+            var barColors = [
+                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+                '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+                '#9966FF', '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56',
+                '#4BC0C0', '#9966FF', '#FF9F40', '#FF6384', '#36A2EB'
+            ];
+            var myChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: models,
+                    datasets: [{
+                        label: 'Total Probable Stocks',
+                        data: totalProbableStock,
+                        backgroundColor: "teal",
+                        // borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Bar Chart'
+                        }
+                    }
+                }
+            });
+        })
+
+
+    //  data 2
+
     fetch('/api/data2/')
-      .then(response => response.json())
-      .then(data => {
-        // Extract required data
-        const team_leader = data.map(entry => entry.team_leader_name);
-        // const wsTgt = data.map(entry => entry.WS_TGT);
-        // const dmsStock = data.map(entry => entry.DMS_Stock);
-        const home = data.map(entry => entry.home_visit_percentage);
-        const test = data.map(entry => entry.test_drive_percentage);
+        .then(response => response.json())
+        .then(data => {
 
-        // const wsach = data.map(entry=>entry.WS_ACH);
-        // const balws= data.map(entry=>entry.BAL_WS);
-       // Select the canvas element
-    var ctx2 = document.getElementById('myChart4').getContext('2d');
+            const team_leader = data.map(entry => entry.team_leader_name);
+            // const wsTgt = data.map(entry => entry.WS_TGT);
+            // const dmsStock = data.map(entry => entry.DMS_Stock);
+            const enquiry = data.map(entry => entry.enquiry_total);
+            // const wsach = data.map(entry=>entry.WS_ACH);
+            // const balws= data.map(entry=>entry.BAL_WS);
+            let enquiryData = enquiry.push(0);
 
-// Create the bar chart
-var barColors=["grey", "skyblue","purple","orange","lightgreen","magenta"]
-var myChart = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels:team_leader ,
-        datasets: [{
-            pointRadius: 10,
-            // pointBackgroundColor: "rgba(0,0,255,1)",
-            label: 'Test Drive %',
-            data: test,
-            backgroundColor: "coral",
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        },
-        {pointRadius: 10,
-            pointBackgroundColor: "rgba(0,0,255,1)",
-            label: 'Home visit %',
-            data: home,
-            backgroundColor:"teal",
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            var ctx = document.getElementById('myChart3').getContext('2d');
+            // Create the line chart
+            var barColors = [
+                '#D4E4FF', // Alice Blue
+                '#ADD8E6', // Light Blue
+                '#87CEEB', // Sky Blue
+                '#6495ED', // Cornflower Blue
+                '#4169E1', // Royal Blue
+                '#0000FF'  // Blue
+            ];
+            ;
 
-        }
-    ]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Bar Chart'
-            }
-        }
-    }
-});
-      })
-      fetch('/api/sales')
-      .then(response => response.json())
-      .then(data => {
-
-        const dse_name = data.map(entry => entry.dse_name);
-        // const wsTgt = data.map(entry => entry.WS_TGT);
-        // const dmsStock = data.map(entry => entry.DMS_Stock);
-        const enquiry = data.map(entry => entry.enquiry_total);
-        // const wsach = data.map(entry=>entry.WS_ACH);
-        // const balws= data.map(entry=>entry.BAL_WS);
-         let enquiryData = enquiry.push(0);
-     
-      var ctx = document.getElementById('myChart5').getContext('2d');
-      // Create the line chart
-      var barColors = [
-      '#D4E4FF', // Alice Blue
-  '#ADD8E6', // Light Blue
-  '#87CEEB', // Sky Blue
-  '#6495ED', // Cornflower Blue
-  '#4169E1', // Royal Blue
-  '#0000FF'  // Blue
-];
-;
-
-      var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: dse_name,
-              datasets: [{
-                  label: 'Number of total enqiry',
-                  data: enquiry,
-                  fill: false,
-                //   borderColor: ',
-                  backgroundColor: 'teal',
-                  tension: 0.1
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-          }
-      });
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: team_leader,
+                    datasets: [{
+                        label: 'Number of total enqiry',
+                        data: enquiry,
+                        fill: false,
+                        //   borderColor: ',
+                        backgroundColor: barColors,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
 
 
-    })
+        })
+    fetch('/api/data2/')
+        .then(response => response.json())
+        .then(data => {
+            // Extract required data
+            const team_leader = data.map(entry => entry.team_leader_name);
+            // const wsTgt = data.map(entry => entry.WS_TGT);
+            // const dmsStock = data.map(entry => entry.DMS_Stock);
+            const home = data.map(entry => entry.home_visit_percentage);
+            const test = data.map(entry => entry.test_drive_percentage);
+
+            // const wsach = data.map(entry=>entry.WS_ACH);
+            // const balws= data.map(entry=>entry.BAL_WS);
+            // Select the canvas element
+            var ctx2 = document.getElementById('myChart4').getContext('2d');
+
+            // Create the bar chart
+            var barColors = ["grey", "skyblue", "purple", "orange", "lightgreen", "magenta"]
+            var myChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: team_leader,
+                    datasets: [{
+                        pointRadius: 10,
+                        // pointBackgroundColor: "rgba(0,0,255,1)",
+                        label: 'Test Drive %',
+                        data: test,
+                        backgroundColor: "coral",
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        pointRadius: 10,
+                        pointBackgroundColor: "rgba(0,0,255,1)",
+                        label: 'Home visit %',
+                        data: home,
+                        backgroundColor: "teal",
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+
+                    }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Bar Chart'
+                        }
+                    }
+                }
+            });
+        })
     fetch('/api/sales')
-      .then(response => response.json())
-      .then(data => {
-        // Extract required data
-        const dse_name = data.map(entry => entry.dse_name);
-        // const wsTgt = data.map(entry => entry.WS_TGT);
-        // const dmsStock = data.map(entry => entry.DMS_Stock);
-        const home = data.map(entry => entry.home_visit);
-        const test = data.map(entry => entry.test_drive);
+        .then(response => response.json())
+        .then(data => {
 
-        // const wsach = data.map(entry=>entry.WS_ACH);
-        // const balws= data.map(entry=>entry.BAL_WS);
-       // Select the canvas element
-    var ctx2 = document.getElementById('myChart6').getContext('2d');
+            const dse_name = data.map(entry => entry.dse_name);
+            // const wsTgt = data.map(entry => entry.WS_TGT);
+            // const dmsStock = data.map(entry => entry.DMS_Stock);
+            const enquiry = data.map(entry => entry.enquiry_total);
+            // const wsach = data.map(entry=>entry.WS_ACH);
+            // const balws= data.map(entry=>entry.BAL_WS);
+            let enquiryData = enquiry.push(0);
 
-// Create the bar chart
-var barColors=["grey", "skyblue","purple","orange","lightgreen","magenta"]
-var myChart = new Chart(ctx2, {
-    type: 'bar',
-    data: {
-        labels:dse_name ,
-        datasets: [{
-            pointRadius: 10,
-            // pointBackgroundColor: "rgba(0,0,255,1)",
-            label: 'Test Drive %',
-            data: home,
-            backgroundColor: "royalblue",
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-        },
-        {pointRadius: 10,
-            pointBackgroundColor: "rgba(0,0,255,1)",
-            label: 'Home visit %',
-            data: test,
-            backgroundColor:"#FF6384",
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
+            var ctx = document.getElementById('myChart5').getContext('2d');
+            // Create the line chart
+            var barColors = [
+                '#D4E4FF', // Alice Blue
+                '#ADD8E6', // Light Blue
+                '#87CEEB', // Sky Blue
+                '#6495ED', // Cornflower Blue
+                '#4169E1', // Royal Blue
+                '#0000FF'  // Blue
+            ];
+            ;
 
-        }
-    ]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Bar Chart'
-            }
-        }
-    }
-});
-      })
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dse_name,
+                    datasets: [{
+                        label: 'Number of total enqiry',
+                        data: enquiry,
+                        fill: false,
+                        //   borderColor: ',
+                        backgroundColor: 'teal',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+
+        })
+    fetch('/api/sales')
+        .then(response => response.json())
+        .then(data => {
+            // Extract required data
+            const dse_name = data.map(entry => entry.dse_name);
+            // const wsTgt = data.map(entry => entry.WS_TGT);
+            // const dmsStock = data.map(entry => entry.DMS_Stock);
+            const home = data.map(entry => entry.home_visit);
+            const test = data.map(entry => entry.test_drive);
+
+            // const wsach = data.map(entry=>entry.WS_ACH);
+            // const balws= data.map(entry=>entry.BAL_WS);
+            // Select the canvas element
+            var ctx2 = document.getElementById('myChart6').getContext('2d');
+
+            // Create the bar chart
+            var barColors = ["grey", "skyblue", "purple", "orange", "lightgreen", "magenta"]
+            var myChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: dse_name,
+                    datasets: [{
+                        pointRadius: 10,
+                        // pointBackgroundColor: "rgba(0,0,255,1)",
+                        label: 'Test Drive %',
+                        data: home,
+                        backgroundColor: "royalblue",
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        pointRadius: 10,
+                        pointBackgroundColor: "rgba(0,0,255,1)",
+                        label: 'Home visit %',
+                        data: test,
+                        backgroundColor: "#FF6384",
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+
+                    }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Bar Chart'
+                        }
+                    }
+                }
+            });
+        })
 
 
 </script>
 
-    <script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
-    <script src="{%static 'js/scripts.bundle.js'%}"></script>
-    <script>
-        function rediectTo(tl_name) {
-            let url = '/teamleaderdetails?event=' + tl_name;
-            console.log(url);
-            window.location.replace(url);
-        }
-    </script>
-     <script>
-        function redirectTo(sales_name) {
-            let url = '/sales_table?event=' + sales_name;
-            console.log(url);
-            window.location.replace(url);
-        }
-    </script>
-    <script>
-        function rediecttTo(tl_name) {
-            let url = '/vechicle_table?event=' + tl_name;
-            console.log(url);
-            window.location.replace(url);
-        }
-   </script>
+<script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
+<script src="{%static 'js/scripts.bundle.js'%}"></script>
+<script>
+    function rediectTo(tl_name) {
+        let url = '/teamleaderdetails?event=' + tl_name;
+        console.log(url);
+        window.location.replace(url);
+    }
+</script>
+<script>
+    function redirectTo(sales_name) {
+        let url = '/sales_table?event=' + sales_name;
+        console.log(url);
+        window.location.replace(url);
+    }
+</script>
+<script>
 
-  </body>
-  <!--end::Body-->
+
+    // vehicle Data
+    function VehicleData(name) {
+
+        fetch("/api/data/").then((res) => res.json().then((data) => {
+            $('#tbody').empty();
+            for (let i = 0; i < data.length; i++) {
+
+                if (data[i].Model === name) {
+
+                    let objectLenght = Object.keys(data[i]).length;
+
+                    if (objectLenght > 0) {
+
+                        let html = `
+                    <tr>
+                        <td >${1}</td>
+                        <td >${data[i].Model}</td>
+                        <td >${data[i].WS_TGT}</td>
+                        <td >${data[i].WS_ACH}</td>
+                        <td >${data[i].Total_Probable_Stock}</td>
+                        <td >${data[i].Total_Probable_Stock}</td>
+                        <td >${data[i].BAL_WS}</td>
+                    </tr>
+                    `;
+
+                        $('#tbody').append(html);
+                    }
+                }
+            }
+
+
+        }))
+
+    }
+
+    //  team leader data
+    function TeamLeaderData(name) {
+        fetch("/api/data2/").then((res) => res.json().then((data) => {
+            $('#teamLeaderBody').empty();
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].team_leader_name === name) {
+
+                    let objectLenght = Object.keys(data[i]).length;
+
+                    if (objectLenght > 0) {
+
+                        let html = `
+                    <tr>
+                        <td >${1}</td>
+                        <td >${data[i].team_leader_name}</td>
+                        <td >${data[i].team_leader_territory}</td>
+                        <td >${data[i].home_visit_percentage}</td>
+                        <td >${data[i].test_drive_percentage}</td>
+                        <td >${data[i].per_day_asking}</td>
+                        <td >${data[i].enquiry_total}</td>
+                    </tr>
+                    `;
+
+                        $('#teamLeaderBody').append(html);
+                    }
+                }
+            }
+
+
+        }))
+
+    }
+
+
+    //  dse data
+    function DseData(name){
+        console.log(name);
+        fetch("/api/sales").then((res) => res.json().then((data) => {
+            $('#DseDataBody').empty();
+            for (let i = 0; i < data.length; i++) {
+            console.log(data[i].dse_name);
+                if (data[i].dse_name === name) {
+
+                    let objectLenght = Object.keys(data[i]).length;
+
+                    if (objectLenght > 0) {
+
+                        let html = `
+                        <tr>
+                        <td >${1}</td>
+                        <td >${data[i].team_leader_name}</td>
+                        <td >${data[i].dse_name}</td>
+                        <td >${data[i].home_visit}</td>
+                        <td >${data[i].test_drive}</td>
+                        <td >${data[i].mspin}</td>
+                        <td >${data[i].ageing}</td>
+                        <td >${data[i].unit_name}</td>
+                        <td >${data[i].enquiry_total}</td>
+                    </tr>
+                    `;
+
+                        $('#DseDataBody').append(html);
+                    }
+                }
+            }
+
+
+        }))
+    }
+
+</script>
+
+</body>
+<!--end::Body-->
+
 </html>

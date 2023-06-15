@@ -297,6 +297,7 @@ def sales_analytics_view(request):
     sales_all=salesEx.objects.all()
    
     return render(request,'sales_dashboard.html',{'sales_all':sales_all})
+    
 
 from django.shortcuts import render
 from .forms import CSVUploadForm

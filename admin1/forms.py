@@ -4,8 +4,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 User = get_user_model()
 def some_view(request):
-    user = User.objects.get(username='example')  # Replace 'example' with the actual username or appropriate lookup
-    user_role = user.role  # Access the 'role' field of the user
+    user = User.objects.get(username='example')  
+    user_role = user.role 
 
 
 
@@ -50,7 +50,7 @@ class CSVUploadForm(forms.Form):
 
 
 
-    # Rest of the view logic
+   
 
 
 

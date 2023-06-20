@@ -24,6 +24,7 @@ from django.views.generic import TemplateView
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from .middleware import LoginRedirectMiddleware
+from django.contrib.auth.views import LoginView
 
 
 
@@ -40,24 +41,25 @@ urlpatterns = [
     path('success/', success, name='success'),
     # path('', views.home, name='home'),
     path('login/', user_login, name='login'),
-    # path("admin/", user_login,name='admin'),
+    #  path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path("admin/", user_login,name='admin'),
     # path('upload-csv/', upload_csv, name='upload'),
     path('admin1/', admin_dashboard, name='admin_dashboard'),
     path('sales_homepage/', sales_dashboard, name='sales_homepage'),
-    # path('user_role/', views.user_dashboard, name='user_dashboard'),
-    path('client_admin/', client_admin_dashboard, name='client_admin_dashboard'),
+    path('user_role/', views.user_dashboard, name='user_dashboard'),
+    # path('client_admin/', client_admin_dashboard, name='client_admin_dashboard'),
     path('Upload-csv/', Please_upload_csv, name='upload1'),
     path('api/data/', DataAnalyticsAPIView.as_view(), name='get_data'),
     path('dashboard/', TemplateView.as_view(template_name='admin1/templates/dashboard.html'), name='dashboard'),
     path('analytics/', views.analytics_dash, name='Analytics'),
-    # path('data-analytics/',data_analytics_view, name='data-analytics2'),
+    path('data-analytics/',data_analytics_view, name='data-analytics2'),
     path('logout/', views.logout_view, name='logout'),
     path('team_leader/',team,name="upload1"),
     path('api/data2/', DataAnalytics2APIView.as_view(), name='get_data'),
     path('usermanagement/',views.usermanagement, name='um'),
     path('billing_summary/',views.billing_summary, name='billing'),
     path('header/',views.header, name='header'),
-    # path('api/user/', userAPIView.as_view(), name='registration-api'),
+    path('api/user/', userAPIView.as_view(), name='registration-api'),
     path('team_scorecard/',views.team_scorecard,name='user_dashboard'),
     path('teamleaderdetails/',views.teamleaderdetails,name='teamleader_details'),
     path('sales_ex/',sales_ex,name='upload1'),

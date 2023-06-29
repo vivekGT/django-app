@@ -190,7 +190,6 @@ def Please_upload_csv(request):
 
 from django.shortcuts import render
 from django.db.models import Sum
-import pandas as pd
 from .models import Sample
 @admin_required
 def analytics_dash(request):

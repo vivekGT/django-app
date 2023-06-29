@@ -87,11 +87,8 @@ def user_login(request):
     return render(request, 'login.html', {'form': form})
 
 def admin_dashboard(request):
-    
     return render(request, 'admin_dashboard.html')
-
-def client_admin_dashboard(request):
-    
+def client_admin_dashboard(request): 
     return render(request, 'client_admin_dashboard.html')
 @sales_required
 def sales_dashboard(request):
@@ -133,15 +130,17 @@ def team(request):
         return render(request, 'success.html')
     
     return render(request, 'upload1.html')
+from .models import Sample
+@admin_required
 def Please_upload_csv(request):
     if request.method == 'POST' and request.FILES.get('csv_file'):
-        Sample.objects.all().delete()
         csv_file = request.FILES['csv_file']
         raw_data = csv_file.read()
         decoded_file = raw_data.decode('utf-8', errors='ignore').replace('\x00', '')
         csv_data = csv.reader(decoded_file.splitlines(), delimiter=',')
-        
-        next(csv_data) 
+
+        next(csv_data)
+
         
         for row in csv_data:
             Model = row[0]
@@ -149,32 +148,56 @@ def Please_upload_csv(request):
             WS_TGT = int(row[2])
             WS_ACH = int(row[3])
             BAL_WS = int(row[4])
-            Total_Probable_Stock = int(row[5])
+            Total_Probable_Stock = int(row[5]),
             
+            
+
             sample = Sample(
                 Model=Model,
                 DMS_Stock=DMS_Stock,
                 WS_TGT=WS_TGT,
                 WS_ACH=WS_ACH,
                 BAL_WS=BAL_WS,
-                Total_Probable_Stock=Total_Probable_Stock
+                Total_Probable_Stock=Total_Probable_Stock,
+
             )
             sample.save()
+            print(sample.date_created)
+            # print(sample.date_created)
 
-        
         return render(request, 'success_csv.html')
-    
+
     return render(request, 'upload1.html')
+
+# from django.shortcuts import render
+# from .models import Sample
+
+# def sample_list(request):
+#     if request.method == 'GET' and 'date_filter' in request.GET:
+#         date_filter = request.GET.get('date_filter')
+#         samples = Sample.objects.filter(date_created__date=date_filter)
+#     else:
+#         samples = Sample.objects.all()
+    
+#     context = {
+#         'samples': samples
+#     }
+    
+#     return render(request, 'Analytics.html', context)
+
+
 
 
 from django.shortcuts import render
 from django.db.models import Sum
+import pandas as pd
 from .models import Sample
 @admin_required
 def analytics_dash(request):
     analytics_sample=Sample.objects.all()
     team_data=TeamLeaderData.objects.all()
     sales_all=salesEx.objects.all()
+    
     return render(request, 'Analytics.html',{'analytics_sample':analytics_sample, 'team_data':team_data,'sales_data':sales_all})
 from django.shortcuts import render
 
@@ -192,7 +215,7 @@ def sales_table(request):
                     sales_data1.update({"id":event.id,"team_leader_name":event.team_leader_name,'dse_name':event.dse_name,"home_visit":event.home_visit,"test_drive":event.test_drive,
                                 "ageing":event.ageing,"enquiry_total":event.enquiry_total,'mspin':event.mspin,'unit_name':event.unit_name}) 
             
-    return JsonResponse(sales_data1,safe=False) 
+    return JsonResponse(sales_data1,safe=False)
 
 
 def restricted_view(request):
@@ -203,7 +226,7 @@ def restricted_view(request):
 def logout_view(request):
     logout(request)
     return redirect("login")
-
+@admin_required
 def usermanagement (request):
     all_details=User.objects.all()
     if request.method == 'POST':
@@ -218,6 +241,7 @@ def usermanagement (request):
         form = RegistrationForm()
    
     return render(request, 'um.html', {'all_details': all_details,'form': form})
+
 def billing_summary(request):
     return render(request,"billing.html")
 from django.contrib.auth import get_user_model
@@ -279,15 +303,49 @@ def vechicledetails(request):
                     vechicle_data1.update({"id":event.id,"Model":event.Model,'WS_TGT':event.WS_TGT,"WS_ACH":event.WS_ACH,"Total_Probable_Stock":event.Total_Probable_Stock,
                                 "BAL_WS":event.BAL_WS,'DMS_Stock':event.DMS_Stock})
         
-     return JsonResponse(vechicle_data1,safe=False)        
-     
-
-
+     return JsonResponse(vechicle_data1,safe=False) 
 def unique_tl(request): 
     return render (request,'uniquetl.html')
 
 def unique_sales(request):
     return render (request,'uniquesales_ex.html')
+
+from django.db.models import Q
+
+from django.db.models import Count
+from django.db.models.functions import TruncDate
+
+from django.db.models import Min, Max
+
+from django.shortcuts import render
+
+def analytics_view():
+    # Get the minimum and maximum dates from the Sample model
+    date_range = Sample.objects.aggregate(
+        start_date=Min('date_created'),
+        end_date=Max('date_created')
+    )
+
+    start_date = date_range['start_date']
+    end_date = date_range['end_date']
+
+    # Perform analytics calculations based on the date range
+    samples = Sample.objects.filter(
+        date_created__range=[start_date, end_date]
+    ).annotate(date=TruncDate('date_created')).values('date').annotate(count=Count('id')).values('date', 'count')
+
+    # Prepare the context data
+    context = {
+        'samples': list(samples),
+        'start_date': start_date.date().isoformat(),  # Convert to date format
+        'end_date': end_date.date().isoformat(),  # Convert to date format
+        # Add other analytics data as needed
+    }
+
+    # Render the template with the context data
+    return JsonResponse(context,safe=False)
+
+
 
 
 

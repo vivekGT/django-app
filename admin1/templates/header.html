@@ -98,6 +98,10 @@ License: For each use you must have a valid license purchased only from above li
         color: white !important;
     font-weight: bold !important;
       }
+      #date-range-input{
+        width: 18% !important;
+        border-radius: 2px !important;
+      }
      
   </style>
 
@@ -137,9 +141,12 @@ License: For each use you must have a valid license purchased only from above li
     />
     <link href="{% static 'css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="{% static 'css/style.bundle.css' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
   </head>
   <!--end::Head-->

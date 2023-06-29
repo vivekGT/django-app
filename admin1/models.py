@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.utils import timezone
+
 
 class User(AbstractUser):
     USER_ROLES = (
@@ -21,6 +24,10 @@ class Person(models.Model):
     def __str__(self):
         return self.name
     
+from django.db import models
+from django.db.models import Q
+from datetime import date
+
 class Sample(models.Model):
     Model = models.CharField(max_length=255)
     DMS_Stock = models.IntegerField(db_column='DMS Stock')
@@ -29,9 +36,14 @@ class Sample(models.Model):
     BAL_WS = models.IntegerField(db_column='BAL WS')
     Total_Probable_Stock = models.IntegerField(db_column='Total Probable Stock')
 
-    def __str__(self):
-        return self.name    
+    date_created = models.DateTimeField(default=timezone.now)
     
+
+    def __str__(self):
+        return self.Model
+
+ 
+
 from django.db import models
 
 class TeamLeaderData(models.Model):
@@ -61,6 +73,7 @@ class salesEx(models.Model):
 
     def __str__(self):
         return self.dse_name 
+
 
         
     

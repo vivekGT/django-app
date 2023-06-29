@@ -148,7 +148,7 @@ def Please_upload_csv(request):
             WS_TGT = int(row[2])
             WS_ACH = int(row[3])
             BAL_WS = int(row[4])
-            Total_Probable_Stock = int(row[5]),
+            Total_Probable_Stock = int(row[5])
             
             
 
